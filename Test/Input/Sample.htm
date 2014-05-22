@@ -1,0 +1,25 @@
+﻿<html>
+<head>
+	<title>{Title}</title>
+</head>
+<body>
+	{%- if User -%}
+	<h1>{{ Lang.Welcome + ' ' + User }}</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>{Server}</th>
+				<th>{Status}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{%- for Item in Servers | Range( 2, 3 ) | Reverse -%}
+				{%- include 'SampleItem.inc' -%}
+			{%- end -%}
+		</tbody>
+	</table>
+	{%- else -%}
+	<a href="Login">Bitte anmelden!</a>
+	{%- end -%}
+</body>
+</html>

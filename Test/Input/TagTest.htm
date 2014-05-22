@@ -1,0 +1,46 @@
+﻿Tag test
+-----------------------------------------------------------------------------
+if 0: {% if 0 -%} yes {%- end %}
+if 1: {% if 1 -%} yes {%- end %}
+IF 1: {% IF 1 -%} yes {%- END %}
+If 1: {% If 1 -%} yes {%- End %}
+if 1: {% if 1 -%} yes {%- endif %}
+if 1: {% if 1 -%} yes {%- else -%} no {%- end %}
+if 0: {% if 0 -%} yes {%- else -%} no {%- end %}
+if 2 = n: {% if 2 = 1 -%} 2 = 1 {%- elseif 2 = 2 -%} 2 = 2 {%- elseif 2 = 3 -%} 2 = 3 {%- else -%} none {%- end %}
+if 4 = n: {% if 4 = 1 -%} 4 = 1 {%- elseif 4 = 2 -%} 4 = 2 {%- elseif 4 = 3 -%} 4 = 3 {%- else -%} none {%- end %}
+
+unless 0: {% unless 0 -%} yes {%- end %}
+unless 1: {% unless 1 -%} yes {%- end %}
+
+switch 1: {% switch 1 %}{% case 1 -%} case 1 {%- case 2 -%} case 2 {%- case 3 -%} case 3 {%- default -%} default {%- end %}
+switch 2: {% switch 2 %}{% case 1 -%} case 1 {%- case 2 -%} case 2 {%- case 3 -%} case 3 {%- default -%} default {%- end %}
+switch 3: {% switch 3 %}{% case 1 -%} case 1 {%- case 2 -%} case 2 {%- case 3 -%} case 3 {%- default -%} default {%- end %}
+switch 4: {% switch 4 %}{% case 1 -%} case 1 {%- case 2 -%} case 2 {%- case 3 -%} case 3 {%- default -%} default {%- end %}
+switch 2: {% switch 2 %}{% when 1 -%} when 1 {%- when 2 -%} when 2 {%- when 3 -%} when 3 {%- else -%} else {%- end %}
+case 2: {% case 2 %}{% case 1 -%} case 1 {%- case 2 -%} case 2 {%- case 3 -%} case 3 {%- default -%} default {%- end %}
+case 2: {% case 2 %}{% when 1 -%} when 1 {%- when 2 -%} when 2 {%- when 3 -%} when 3 {%- else -%} else {%- end %}
+
+for Server in Servers: {%- for Server in Servers %} {{ Server.Number }}={{ Server.Status }} {%- end %}
+for Server in Servers | Range( 2, 3 ): {%- for Server in Servers | Range( 2, 3 ) %} {{ Server.Number }}={{ Server.Status }} {%- end %}
+for Server in Servers | Reverse: {%- for Server in Servers | Reverse %} {{ Server.Number }}={{ Server.Status }} {%- end %}
+for Server in Servers | Range( 3, 0 ): {%- for Server in Servers | Range( 3, 0 ) %} {{ Server.Number }}={{ Server.Status }} {%- else -%} leer {%- end %}
+for Server in Servers: (State) {%- for Server in Servers %} {{ forloop }} {%- end %}
+for Server in Servers: (State.Index) {%- for Server in Servers %} {{ forloop.Index }} {%- end %}
+for Server in Servers: (State.RIndex) {%- for Server in Servers %} {{ forloop.RIndex }} {%- end %}
+for Server in Servers: (State.First/Last/Odd) {%- for Server in Servers %} {{ forloop.First }}/{{ forloop.Last }}/{{ forloop.Odd }} {%- end %}
+for Letter in "A-B-C" | Split( '-' ): {%- for Letter in "A-B-C" | Split( '-' ) %} {{ Letter }} {%- end %}
+for Entry in Lang: {%- for Entry in Lang %} {{ Entry }} {%- end %}
+for Entry in Lang: (Key/Value) {%- for Entry in Lang %} {{ Entry.Key }}={{ Entry.Value }} {%- end %}
+
+SetQuickData Lang; Welcome: {% SetQuickData Lang %}{Welcome}
+SetQuickData Version; Major: {% SetQuickData Version %}{Major}
+SetQuickData Servers[ 1 + 1 ]; Number: {% SetQuickData Servers[ 1 + 1 ] %}{Number}
+SetQuickData 'La' + 'ng' | Eval; Welcome: {% SetQuickData 'La' + 'ng' | Eval %}{Welcome}
+
+SetCulture 'en-US': {% SetCulture 'en-US' %}{{ 19.99 | "c" }}
+SetCulture 'de-DE': {% SetCulture 'de-DE' %}{{ 19.99 | "c" }}
+SetCulture '': {% SetCulture '' %}{{ 19.99 | "c" }}
+SetCulture 'de' + '-' + 'DE': {% SetCulture 'de' + '-' + 'DE' %}{{ 19.99 | "c" }}
+
+{% include 'Included' + '.inc' %}

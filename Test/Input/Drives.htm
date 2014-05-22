@@ -1,0 +1,71 @@
+﻿<html>
+<head>
+	<title>Drives information</title>
+	<style type="text/css" >
+		*
+		{
+			margin: 0;
+			padding: 0;
+		}
+		body
+		{
+			background: #fff;
+			margin: 1em;
+			text-align: center;
+		}
+		.drive
+		{
+			position: relative;
+			width: 25em;
+			height: 4em;
+			margin: auto;
+			background: #fcc;
+			border: solid 1px #888;
+		}
+		.drive .free
+		{
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background: #cfc;
+		}
+		.drive h1
+		{
+			position: absolute;
+			top: 0.2em;
+			left: 1em;
+			font-size: 1.6em;
+		}
+		.drive h2
+		{
+			position: absolute;
+			top: 0.2em;
+			right: 1em;
+			font-size: 1.6em;
+		}
+		.drive center
+		{
+			position: absolute;
+			bottom: 0.2em;
+			left: 0;
+			right: 0;
+			margin: auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>Drives</h1>
+	{%- SetData GB = 1024.0 * 1024.0 * 1024.0 -%}
+	{%- For Drive in Drives -%}
+	<br />
+	<div class="drive">
+		{%- SetData Free = 100.0 * Drive.TotalFreeSpace / Drive.TotalSize -%}
+		<div class="free" style="width:{{ Free | 'f0' }}%"></div>
+		<h1>{{ Drive.RootDirectory + ' (' + Drive.VolumeLabel + ')' }}</h1>
+		<h2>{{ Drive.DriveType + ' (' + Drive.DriveFormat + ')' }}</h2>
+		<center>Total: {{ Drive.TotalSize / GB | 'f2' }} GB - Free: {{ Drive.TotalFreeSpace / GB | 'f2' }} GB ({{ Free | 'f1' }}%)</center>
+	</div>
+	{%- End -%}
+</body>
+</html>

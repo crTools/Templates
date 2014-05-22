@@ -1,0 +1,80 @@
+Filter test
+-----------------------------------------------------------------------------
+42													42
+42 | 'd'											42
+42 | 'd3'											042
+42 | 'c'											¤42.00
+42 | 'c', 'de-DE'									42,00 €
+42 | 'c', 'en-US'									$42.00
+42 | 'x'											2a
+42 | 'X'											2A
+3.14159265359										3.14159265359
+3.14159265359 | 'f'									3.14
+3.14159265359 | 'f2'								3.14
+3.14159265359 | 'f3'								3.142
+3.14159265359 | 'e'									3.141593e+000
+'Dies ist ein Text'									Dies ist ein Text
+'Dies ist ein Text' | Upcase						DIES IST EIN TEXT
+'Dies ist ein Text' | Upcase()						DIES IST EIN TEXT
+'Dies ist ein Text' | upcase						DIES IST EIN TEXT
+'Dies ist ein Text' | UPCASE						DIES IST EIN TEXT
+'Dies ist ein Text' | up_case						DIES IST EIN TEXT
+'Dies ist ein Text' | Downcase						dies ist ein text
+'Dies ist ein Text' | Upcase | Downcase				dies ist ein text
+'Dies ist ein Text' | Capitalize					Dies Ist Ein Text
+'Dies ist ein Text' | Replace( 's', 'z' )			Diez izt ein Text
+'Dies ist ein Text' | ReplaceFirst( 's', 'z' )		Diez ist ein Text
+'Dies ist ein Text' | Remove( 'i' )					Des st en Text
+'Dies ist ein Text' | RemoveFirst( 'Dies' )			 ist ein Text
+'Dies ist ein Text' | RemoveFirst( 'Text' )			Dies ist ein 
+'Dies ist ein Text' | RegexReplace( '\\s', '-' )	Dies-ist-ein-Text
+'Mitte' | Prepend( 'Anfang' )						AnfangMitte
+'Mitte' | Append( 'Ende' )							MitteEnde
+'Mitte' | Prepend( 'Anfang' ) | Append( 'Ende' )	AnfangMitteEnde
+'Dies ist ein langer Text' | Truncate				Dies ist ein lang...
+'Dies ist ein langer Text' | Truncate: 10			Dies is...
+'Dies ist ein langer Text' | Truncate: 10, '..'		Dies ist..
+'Dies ist ein langer Text' | Truncate( 10 )			Dies is...
+'Dies ist ein langer Text' | Truncate( 10, '..' )	Dies ist..
+'Zwei sind > als Eins aber < als Drei' | Escape		Zwei sind &gt; als Eins aber &lt; als Drei
+'Zeile 1\nZeile 2' | StripNewlines					Zeile 1Zeile 2
+'Zeile 1\nZeile 2' | NewlineToBR | StripNewlines	Zeile 1<br />Zeile 2
+'<div><h1>Titel</h1></div>' | StripHtml				Titel
+'          hallo          ' | Trim					hallo
+'Dies ist ein Text' | Contains( 'ist' )				True
+'Dies ist ein Text' | Conteins( 'war' )				False
+'Dies ist ein Text' | StartsWith( 'Dies' )			True
+'Dies ist ein Text' | StartsWith( 'Das' )			False
+'Dies ist ein Text' | EndsWith( 'Text' )			True
+'Dies ist ein Text' | EndsWith( 'Test' )			False
+'Dies ist ein Text' | Size							17
+'Dies ist ein Text' | Split( ' ' )					DiesisteinText
+'Dies ist ein Text' | Split( ' ' ) | Size			4
+'Dies ist ein Text' | Split( ' ' ) | Join( '-' )	Dies-ist-ein-Text
+( User | Size ) >= 4 ? 'OK' : 'Name zu kurz'		OK
+'1234567890' | Sort									0123456789
+'1234567890' | Reverse								0987654321
+'1234567890' | First								1
+'1234567890' | First( 3 )							123
+'1234567890' | First( 20 )							1234567890
+'1234567890' | Last									0
+'1234567890' | Last( 3 )							890
+'1234567890' | Last( 20 )							1234567890
+'1234567890' | SkipFirst							234567890
+'1234567890' | SkipFirst( 3 )						4567890
+'1234567890' | SkipFirst( 20 )						
+'1234567890' | SkipLast								123456789
+'1234567890' | SkipLast( 3 )						1234567
+'1234567890' | SkipLast( 20 )						
+'1234567890' | SkipFirst( 3 ) | First( 3 )			456
+'1234567890' | Range( 3, 3 )						456
+'1234567890' | Range( 3, 20 )						4567890
+42 | String											42
+( '40' | Integer ) + 2								42
+( '40' | Decimal ) + 2								42
+'now' | Date										05/22/2014
+'now' | Date( 'D' )									Thursday, 22 May 2014
+'now' | Time										04:46:31
+'now' | DateTime									05/22/2014 04:46:31
+'24.12.2014' | Date									
+'2014-12-24T00:00:00' | Date						12/24/2014

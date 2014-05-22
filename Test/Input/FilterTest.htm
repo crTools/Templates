@@ -1,0 +1,80 @@
+﻿Filter test
+-----------------------------------------------------------------------------
+42													{{ 42													}}
+42 | 'd'											{{ 42 | 'd'												}}
+42 | 'd3'											{{ 42 | 'd3'											}}
+42 | 'c'											{{ 42 | 'c'												}}
+42 | 'c', 'de-DE'									{{ 42 | 'c', 'de-DE'									}}
+42 | 'c', 'en-US'									{{ 42 | 'c', 'en-US'									}}
+42 | 'x'											{{ 42 | 'x'												}}
+42 | 'X'											{{ 42 | 'X'												}}
+3.14159265359										{{ 3.14159265359										}}
+3.14159265359 | 'f'									{{ 3.14159265359 | 'f'									}}
+3.14159265359 | 'f2'								{{ 3.14159265359 | 'f2'									}}
+3.14159265359 | 'f3'								{{ 3.14159265359 | 'f3'									}}
+3.14159265359 | 'e'									{{ 3.14159265359 | 'e'									}}
+'Dies ist ein Text'									{{ 'Dies ist ein Text'									}}
+'Dies ist ein Text' | Upcase						{{ 'Dies ist ein Text' | Upcase							}}
+'Dies ist ein Text' | Upcase()						{{ 'Dies ist ein Text' | Upcase()						}}
+'Dies ist ein Text' | upcase						{{ 'Dies ist ein Text' | upcase							}}
+'Dies ist ein Text' | UPCASE						{{ 'Dies ist ein Text' | UPCASE							}}
+'Dies ist ein Text' | up_case						{{ 'Dies ist ein Text' | up_case						}}
+'Dies ist ein Text' | Downcase						{{ 'Dies ist ein Text' | Downcase						}}
+'Dies ist ein Text' | Upcase | Downcase				{{ 'Dies ist ein Text' | Upcase | Downcase				}}
+'Dies ist ein Text' | Capitalize					{{ 'Dies ist ein Text' | Capitalize						}}
+'Dies ist ein Text' | Replace( 's', 'z' )			{{ 'Dies ist ein Text' | Replace( 's', 'z' )			}}
+'Dies ist ein Text' | ReplaceFirst( 's', 'z' )		{{ 'Dies ist ein Text' | ReplaceFirst( 's', 'z' )		}}
+'Dies ist ein Text' | Remove( 'i' )					{{ 'Dies ist ein Text' | Remove( 'i' )					}}
+'Dies ist ein Text' | RemoveFirst( 'Dies' )			{{ 'Dies ist ein Text' | RemoveFirst( 'Dies' )			}}
+'Dies ist ein Text' | RemoveFirst( 'Text' )			{{ 'Dies ist ein Text' | RemoveFirst( 'Text' )			}}
+'Dies ist ein Text' | RegexReplace( '\\s', '-' )	{{ 'Dies ist ein Text' | RegexReplace( '\\s', '-' )		}}
+'Mitte' | Prepend( 'Anfang' )						{{ 'Mitte' | Prepend( 'Anfang' )						}}
+'Mitte' | Append( 'Ende' )							{{ 'Mitte' | Append( 'Ende' )							}}
+'Mitte' | Prepend( 'Anfang' ) | Append( 'Ende' )	{{ 'Mitte' | Prepend( 'Anfang' ) | Append( 'Ende' )		}}
+'Dies ist ein langer Text' | Truncate				{{ 'Dies ist ein langer Text' | Truncate				}}
+'Dies ist ein langer Text' | Truncate: 10			{{ 'Dies ist ein langer Text' | Truncate: 10			}}
+'Dies ist ein langer Text' | Truncate: 10, '..'		{{ 'Dies ist ein langer Text' | Truncate: 10, '..'		}}
+'Dies ist ein langer Text' | Truncate( 10 )			{{ 'Dies ist ein langer Text' | Truncate( 10 )			}}
+'Dies ist ein langer Text' | Truncate( 10, '..' )	{{ 'Dies ist ein langer Text' | Truncate( 10, '..' )	}}
+'Zwei sind > als Eins aber < als Drei' | Escape		{{ 'Zwei sind > als Eins aber < als Drei' | Escape		}}
+'Zeile 1\nZeile 2' | StripNewlines					{{ 'Zeile 1\nZeile 2' | StripNewLines					}}
+'Zeile 1\nZeile 2' | NewlineToBR | StripNewlines	{{ 'Zeile 1\nZeile 2' | NewlineToBR | StripNewLines		}}
+'<div><h1>Titel</h1></div>' | StripHtml				{{ '<div><h1>Titel</h1></div>' | StripHtml				}}
+'          hallo          ' | Trim					{{ '          hallo          ' | Trim					}}
+'Dies ist ein Text' | Contains( 'ist' )				{{ 'Dies ist ein Text' | Contains( 'ist' )				}}
+'Dies ist ein Text' | Conteins( 'war' )				{{ 'Dies ist ein Text' | Contains( 'war' )				}}
+'Dies ist ein Text' | StartsWith( 'Dies' )			{{ 'Dies ist ein Text' | StartsWith( 'Dies' )			}}
+'Dies ist ein Text' | StartsWith( 'Das' )			{{ 'Dies ist ein Text' | StartsWith( 'Das' )			}}
+'Dies ist ein Text' | EndsWith( 'Text' )			{{ 'Dies ist ein Text' | EndsWith( 'Text' )				}}
+'Dies ist ein Text' | EndsWith( 'Test' )			{{ 'Dies ist ein Text' | EndsWith( 'Test' )				}}
+'Dies ist ein Text' | Size							{{ 'Dies ist ein Text' | Size							}}
+'Dies ist ein Text' | Split( ' ' )					{{ 'Dies ist ein Text' | Split( ' ' )					}}
+'Dies ist ein Text' | Split( ' ' ) | Size			{{ 'Dies ist ein Text' | Split( ' ' ) | Size			}}
+'Dies ist ein Text' | Split( ' ' ) | Join( '-' )	{{ 'Dies ist ein Text' | Split( ' ' ) | Join( '-' )		}}
+( User | Size ) >= 4 ? 'OK' : 'Name zu kurz'		{{ ( User | Size ) >= 4 ? 'OK' : 'Name zu kurz'			}}
+'1234567890' | Sort									{{ '1234567890' | Sort									}}
+'1234567890' | Reverse								{{ '1234567890' | Reverse								}}
+'1234567890' | First								{{ '1234567890' | First									}}
+'1234567890' | First( 3 )							{{ '1234567890' | First( 3 )							}}
+'1234567890' | First( 20 )							{{ '1234567890' | First( 20 )							}}
+'1234567890' | Last									{{ '1234567890' | Last									}}
+'1234567890' | Last( 3 )							{{ '1234567890' | Last( 3 )								}}
+'1234567890' | Last( 20 )							{{ '1234567890' | Last( 20 )							}}
+'1234567890' | SkipFirst							{{ '1234567890' | SkipFirst								}}
+'1234567890' | SkipFirst( 3 )						{{ '1234567890' | SkipFirst( 3 )						}}
+'1234567890' | SkipFirst( 20 )						{{ '1234567890' | SkipFirst( 20 )						}}
+'1234567890' | SkipLast								{{ '1234567890' | SkipLast								}}
+'1234567890' | SkipLast( 3 )						{{ '1234567890' | SkipLast( 3 )							}}
+'1234567890' | SkipLast( 20 )						{{ '1234567890' | SkipLast( 20 )						}}
+'1234567890' | SkipFirst( 3 ) | First( 3 )			{{ '1234567890' | SkipFirst( 3 ) | First( 3 )			}}
+'1234567890' | Range( 3, 3 )						{{ '1234567890' | Range( 3, 3 )							}}
+'1234567890' | Range( 3, 20 )						{{ '1234567890' | Range( 3, 20 )						}}
+42 | String											{{ 42 | String											}}
+( '40' | Integer ) + 2								{{ ( '40' | Integer ) + 2								}}
+( '40' | Decimal ) + 2								{{ ( '40' | Decimal ) + 2								}}
+'now' | Date										{{ 'now' | Date											}}
+'now' | Date( 'D' )									{{ 'now' | Date( 'D' )									}}
+'now' | Time										{{ 'now' | Time											}}
+'now' | DateTime									{{ 'now' | DateTime										}}
+'24.12.2014' | Date									{{ '24.12.2014' | Date									}}
+'2014-12-24T00:00:00' | Date						{{ '2014-12-24T00:00:00' | Date							}}

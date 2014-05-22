@@ -1,0 +1,4 @@
+﻿Title		= Template-Test
+Welcome		= Willkommen
+Server		= Server
+Status		= Status

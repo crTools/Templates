@@ -1,0 +1,46 @@
+Tag test
+-----------------------------------------------------------------------------
+if 0: 
+if 1: yes
+IF 1: yes
+If 1: yes
+if 1: yes
+if 1: yes
+if 0: no
+if 2 = n: 2 = 2
+if 4 = n: none
+
+unless 0: yes
+unless 1: 
+
+switch 1: case 1
+switch 2: case 2
+switch 3: case 3
+switch 4: default
+switch 2: when 2
+case 2: case 2
+case 2: when 2
+
+for Server in Servers: 10=OK 20=OK 50=OK 51=OK 52=OK 53=OK 54=OK
+for Server in Servers | Range( 2, 3 ): 50=OK 51=OK 52=OK
+for Server in Servers | Reverse: 54=OK 53=OK 52=OK 51=OK 50=OK 20=OK 10=OK
+for Server in Servers | Range( 3, 0 ):leer
+for Server in Servers: (State) 1/7 2/7 3/7 4/7 5/7 6/7 7/7
+for Server in Servers: (State.Index) 1 2 3 4 5 6 7
+for Server in Servers: (State.RIndex) 7 6 5 4 3 2 1
+for Server in Servers: (State.First/Last/Odd) True/False/False False/False/True False/False/False False/False/True False/False/False False/False/True False/True/False
+for Letter in "A-B-C" | Split( '-' ): A B C
+for Entry in Lang: [Title, Template-Test] [Welcome, Willkommen] [Server, Server] [Status, Status]
+for Entry in Lang: (Key/Value) Title=Template-Test Welcome=Willkommen Server=Server Status=Status
+
+SetQuickData Lang; Welcome: Willkommen
+SetQuickData Version; Major: 6
+SetQuickData Servers[ 1 + 1 ]; Number: 50
+SetQuickData 'La' + 'ng' | Eval; Welcome: Willkommen
+
+SetCulture 'en-US': $19.99
+SetCulture 'de-DE': 19,99 €
+SetCulture '': ¤19.99
+SetCulture 'de' + '-' + 'DE': 19,99 €
+
+Included

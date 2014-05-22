@@ -1,0 +1,313 @@
+Parser test
+-----------------------------------------------------------------------------
+'Hallo'									Hallo
+"Welt"									Welt
+42										42
+3.141									3.141
+1 + 1									2
+2 - 1									1
+2 - +1									1
+2 - -1									3
+2 * 2									4
+4 / 2									2
+3 / 2									1
+3.0 / 2									1.5
+5 % 3									2
+1 + 2 * 3								7
+1 * 2 + 3								5
+( 1 + 2 ) * ( 3 + 4 )					21
+1 + 'st'								1st
+2 + "nd"								2nd
+1 and 0									False
+1 or 0									True
+not 1									False
+1 && 0									False
+1 || 0									True
+!1										False
+1 = 2									False
+1 == 2									False
+1 < 2									True
+1 <= 2									True
+1 > 2									False
+1 >= 2									False
+1 != 2									True
+1 <> 2									True
+1 < 2 and 3 < 4							True
+1 ? 2 : 3								2
+0 ? 2 : 3								3
+User ? User : 'Unbekannt'				Sebastian
+''	 ? User : 'Unbekannt'				Unbekannt
+User ?? 'Unbekannt'						Sebastian
+''	 ?? 'Unbekannt'						Unbekannt
+Version									6.2.9200.0
+Version.Major							6
+Version.Minor							2
+Version.Major + Version.Minor			8
+Version.Major + '.' + Version.Minor		6.2
+Version[ 'Ma' + 'jor' ]					6
+Version.Major = 6						True
+Servers									{ Server = Server10, Number = 10, Status = OK }{ Server = Server20, Number = 20, Status = OK }{ Server = Server50, Number = 50, Status = OK }{ Server = Server51, Number = 51, Status = OK }{ Server = Server52, Number = 52, Status = OK }{ Server = Server53, Number = 53, Status = OK }{ Server = Server54, Number = 54, Status = OK }
+Servers[ 2 ]							{ Server = Server50, Number = 50, Status = OK }
+Servers[ 2 ].Server						Server50
+Servers[ 2 ].Status						OK
+Servers[ 2 ].Server[ 6 ]				5
+
+
+Filter test
+-----------------------------------------------------------------------------
+42													42
+42 | 'd'											42
+42 | 'd3'											042
+42 | 'c'											¤42.00
+42 | 'c', 'de-DE'									42,00 €
+42 | 'c', 'en-US'									$42.00
+42 | 'x'											2a
+42 | 'X'											2A
+3.14159265359										3.14159265359
+3.14159265359 | 'f'									3.14
+3.14159265359 | 'f2'								3.14
+3.14159265359 | 'f3'								3.142
+3.14159265359 | 'e'									3.141593e+000
+'Dies ist ein Text'									Dies ist ein Text
+'Dies ist ein Text' | Upcase						DIES IST EIN TEXT
+'Dies ist ein Text' | Upcase()						DIES IST EIN TEXT
+'Dies ist ein Text' | upcase						DIES IST EIN TEXT
+'Dies ist ein Text' | UPCASE						DIES IST EIN TEXT
+'Dies ist ein Text' | up_case						DIES IST EIN TEXT
+'Dies ist ein Text' | Downcase						dies ist ein text
+'Dies ist ein Text' | Upcase | Downcase				dies ist ein text
+'Dies ist ein Text' | Capitalize					Dies Ist Ein Text
+'Dies ist ein Text' | Replace( 's', 'z' )			Diez izt ein Text
+'Dies ist ein Text' | ReplaceFirst( 's', 'z' )		Diez ist ein Text
+'Dies ist ein Text' | Remove( 'i' )					Des st en Text
+'Dies ist ein Text' | RemoveFirst( 'Dies' )			 ist ein Text
+'Dies ist ein Text' | RemoveFirst( 'Text' )			Dies ist ein 
+'Dies ist ein Text' | RegexReplace( '\\s', '-' )	Dies-ist-ein-Text
+'Mitte' | Prepend( 'Anfang' )						AnfangMitte
+'Mitte' | Append( 'Ende' )							MitteEnde
+'Mitte' | Prepend( 'Anfang' ) | Append( 'Ende' )	AnfangMitteEnde
+'Dies ist ein langer Text' | Truncate				Dies ist ein lang...
+'Dies ist ein langer Text' | Truncate: 10			Dies is...
+'Dies ist ein langer Text' | Truncate: 10, '..'		Dies ist..
+'Dies ist ein langer Text' | Truncate( 10 )			Dies is...
+'Dies ist ein langer Text' | Truncate( 10, '..' )	Dies ist..
+'Zwei sind > als Eins aber < als Drei' | Escape		Zwei sind &gt; als Eins aber &lt; als Drei
+'Zeile 1\nZeile 2' | StripNewlines					Zeile 1Zeile 2
+'Zeile 1\nZeile 2' | NewlineToBR | StripNewlines	Zeile 1<br />Zeile 2
+'<div><h1>Titel</h1></div>' | StripHtml				Titel
+'          hallo          ' | Trim					hallo
+'Dies ist ein Text' | Contains( 'ist' )				True
+'Dies ist ein Text' | Conteins( 'war' )				False
+'Dies ist ein Text' | StartsWith( 'Dies' )			True
+'Dies ist ein Text' | StartsWith( 'Das' )			False
+'Dies ist ein Text' | EndsWith( 'Text' )			True
+'Dies ist ein Text' | EndsWith( 'Test' )			False
+'Dies ist ein Text' | Size							17
+'Dies ist ein Text' | Split( ' ' )					DiesisteinText
+'Dies ist ein Text' | Split( ' ' ) | Size			4
+'Dies ist ein Text' | Split( ' ' ) | Join( '-' )	Dies-ist-ein-Text
+( User | Size ) >= 4 ? 'OK' : 'Name zu kurz'		OK
+'1234567890' | Sort									0123456789
+'1234567890' | Reverse								0987654321
+'1234567890' | First								1
+'1234567890' | First( 3 )							123
+'1234567890' | First( 20 )							1234567890
+'1234567890' | Last									0
+'1234567890' | Last( 3 )							890
+'1234567890' | Last( 20 )							1234567890
+'1234567890' | SkipFirst							234567890
+'1234567890' | SkipFirst( 3 )						4567890
+'1234567890' | SkipFirst( 20 )						
+'1234567890' | SkipLast								123456789
+'1234567890' | SkipLast( 3 )						1234567
+'1234567890' | SkipLast( 20 )						
+'1234567890' | SkipFirst( 3 ) | First( 3 )			456
+'1234567890' | Range( 3, 3 )						456
+'1234567890' | Range( 3, 20 )						4567890
+42 | String											42
+( '40' | Integer ) + 2								42
+( '40' | Decimal ) + 2								42
+'now' | Date										05/22/2014
+'now' | Date( 'D' )									Thursday, 22 May 2014
+'now' | Time										04:46:30
+'now' | DateTime									05/22/2014 04:46:30
+'24.12.2014' | Date									
+'2014-12-24T00:00:00' | Date						12/24/2014
+
+
+Tag test
+-----------------------------------------------------------------------------
+if 0: 
+if 1: yes
+IF 1: yes
+If 1: yes
+if 1: yes
+if 1: yes
+if 0: no
+if 2 = n: 2 = 2
+if 4 = n: none
+
+unless 0: yes
+unless 1: 
+
+switch 1: case 1
+switch 2: case 2
+switch 3: case 3
+switch 4: default
+switch 2: when 2
+case 2: case 2
+case 2: when 2
+
+for Server in Servers: 10=OK 20=OK 50=OK 51=OK 52=OK 53=OK 54=OK
+for Server in Servers | Range( 2, 3 ): 50=OK 51=OK 52=OK
+for Server in Servers | Reverse: 54=OK 53=OK 52=OK 51=OK 50=OK 20=OK 10=OK
+for Server in Servers | Range( 3, 0 ):leer
+for Server in Servers: (State) 1/7 2/7 3/7 4/7 5/7 6/7 7/7
+for Server in Servers: (State.Index) 1 2 3 4 5 6 7
+for Server in Servers: (State.RIndex) 7 6 5 4 3 2 1
+for Server in Servers: (State.First/Last/Odd) True/False/False False/False/True False/False/False False/False/True False/False/False False/False/True False/True/False
+for Letter in "A-B-C" | Split( '-' ): A B C
+for Entry in Lang: [Title, Template-Test] [Welcome, Willkommen] [Server, Server] [Status, Status]
+for Entry in Lang: (Key/Value) Title=Template-Test Welcome=Willkommen Server=Server Status=Status
+
+SetQuickData Lang; Welcome: Willkommen
+SetQuickData Version; Major: 6
+SetQuickData Servers[ 1 + 1 ]; Number: 50
+SetQuickData 'La' + 'ng' | Eval; Welcome: Willkommen
+
+SetCulture 'en-US': $19.99
+SetCulture 'de-DE': 19,99 €
+SetCulture '': ¤19.99
+SetCulture 'de' + '-' + 'DE': 19,99 €
+
+Included
+
+
+<html>
+<head>
+	<title>Template-Test</title>
+</head>
+<body>
+	<h1>Willkommen Sebastian</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Server</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+<tr>
+	<td>Server52</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>Server51</td>
+	<td>OK</td>
+</tr>
+<tr>
+	<td>Server50</td>
+	<td>OK</td>
+</tr>
+		</tbody>
+	</table>
+</body>
+</html>
+
+
+<html>
+<head>
+	<title>Drives information</title>
+	<style type="text/css" >
+		*
+		{
+			margin: 0;
+			padding: 0;
+		}
+		body
+		{
+			background: #fff;
+			margin: 1em;
+			text-align: center;
+		}
+		.drive
+		{
+			position: relative;
+			width: 25em;
+			height: 4em;
+			margin: auto;
+			background: #fcc;
+			border: solid 1px #888;
+		}
+		.drive .free
+		{
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background: #cfc;
+		}
+		.drive h1
+		{
+			position: absolute;
+			top: 0.2em;
+			left: 1em;
+			font-size: 1.6em;
+		}
+		.drive h2
+		{
+			position: absolute;
+			top: 0.2em;
+			right: 1em;
+			font-size: 1.6em;
+		}
+		.drive center
+		{
+			position: absolute;
+			bottom: 0.2em;
+			left: 0;
+			right: 0;
+			margin: auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>Drives</h1>
+	<br />
+	<div class="drive">
+		<div class="free" style="width:43%"></div>
+		<h1>C:\ (Win8)</h1>
+		<h2>Fixed (NTFS)</h2>
+		<center>Total: 232,78 GB - Free: 99,63 GB (42,8%)</center>
+	</div>
+	<br />
+	<div class="drive">
+		<div class="free" style="width:17%"></div>
+		<h1>D:\ (Backup)</h1>
+		<h2>Fixed (NTFS)</h2>
+		<center>Total: 2794,39 GB - Free: 486,25 GB (17,4%)</center>
+	</div>
+	<br />
+	<div class="drive">
+		<div class="free" style="width:4%"></div>
+		<h1>S:\ (Daten)</h1>
+		<h2>Network (NTFS)</h2>
+		<center>Total: 931,51 GB - Free: 40,05 GB (4,3%)</center>
+	</div>
+	<br />
+	<div class="drive">
+		<div class="free" style="width:3%"></div>
+		<h1>T:\ (TV)</h1>
+		<h2>Network (NTFS)</h2>
+		<center>Total: 1863,01 GB - Free: 56,78 GB (3,0%)</center>
+	</div>
+	<br />
+	<div class="drive">
+		<div class="free" style="width:0%"></div>
+		<h1>V:\ (Video)</h1>
+		<h2>Network (NTFS)</h2>
+		<center>Total: 2794,39 GB - Free: 12,00 GB (0,4%)</center>
+	</div>
+</body>
+</html>
+
